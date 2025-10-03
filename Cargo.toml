@@ -1,0 +1,38 @@
+[package]
+name = "bitcoin-keyforge"
+version = "0.1.0"
+edition = "2021"
+authors = ["SynthThinkers Bitcoin Lab <support@synththinkers.com>"]
+description = "Secure Bitcoin key generation and key forging tool"
+license = "MIT"
+repository = "https://github.com/SynthThinkers-Bitcoin-Lab/bitcoin-keyforge"
+readme = "README.md"
+keywords = ["bitcoin", "cryptography", "keys", "security", "forge"]
+categories = ["cryptography", "command-line-utilities"]
+
+[dependencies]
+clap = { version = "4.5", features = ["derive"] }
+bitcoin = "0.32"
+secp256k1 = { version = "0.29", features = ["rand", "recovery"] }
+hex = "0.4"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+anyhow = "1.0"
+zeroize = { version = "1.8", features = ["derive"] }
+rand = "0.8"
+base58 = "0.2"
+sha2 = "0.10"
+ripemd = "0.1"
+chrono = { version = "0.4", features = ["serde"] }
+
+[dev-dependencies]
+tempfile = "3.8"
+
+[profile.release]
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = true
+
+[profile.dev]
+debug = true
